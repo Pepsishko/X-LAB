@@ -1,0 +1,5 @@
+SELECT msg."Date", msg."Result", COUNT(*) AS "CountResult", SUM("Duration") AS "SUMDuration", pr.name as "NameProject", pr.description as "DescriptionProject", srv.name as "NameServer", srv.ip_address, srv.description as "DescriptionServer" from public."Answers" msg
+JOIN public."Project" pr ON pr.id = msg."Proj"
+JOIN public."Server" srv ON srv.id = msg."Ser"
+where msg."Date" >= '2020-08-25' AND msg."Date" <= '2020-08-26' 
+GROUP BY msg."Date", msg."Result", pr.name, srv.name, pr.description, srv.ip_address, srv.description
