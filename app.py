@@ -93,25 +93,25 @@ class Rec():
         if ((self.stage == 1) and (self.DB)):
             checkMachine = checkAnswMachine(recText)
             addToDB({"stage 1": checkMachine, "duration": time, "message": recText})
-            #os.remove(self.pathToFile)
+            os.remove(self.pathToFile)
         elif ((self.stage == 1) and (self.DB==False)):
             checkMachine = checkAnswMachine(recText)
             addToLogFile({"stage 1" : checkMachine ,"duration": time,"message":recText})
-            #os.remove(self.pathToFile)
+            os.remove(self.pathToFile)
         elif((self.stage == 2) and (self.DB)):
             if (checkAnswMachine(recText) == 0):
                 print('Обнаружен автоответчик используйте 1 этап распознования')
             else:
                 checkAns = checkAnswer(response[0]['alternatives'][0]['transcript'])
                 addToDB({"stage 2": checkAns, "duration": time, "message": recText})
-                #os.remove(self.pathToFile)
+                os.remove(self.pathToFile)
         elif ((self.stage == 2) and (self.DB==False)):
             if(checkAnswMachine(recText)==0):
                 print('Обнаружен автоответчик используйте 1 этап распознования')
             else:
                 checkAns = checkAnswer(response[0]['alternatives'][0]['transcript'])
                 addToLogFile({"stage 2": checkAns, "duration": time, "message": recText})
-                #os.remove(self.pathToFile)
+                os.remove(self.pathToFile)
 
 print('Введите путь к .wav файлу:')
 pathToFile = input()
